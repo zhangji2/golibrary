@@ -2,6 +2,8 @@ package utils
 
 import "strings"
 
+// 字符串工具函数
+
 // HasPrefix 判断字符串 s 是否以前缀 prefix 开头。
 func HasPrefix(s string, prefix string) bool {
 	if s == "" || prefix == "" {
