@@ -58,9 +58,9 @@ func TestAesDecryptCFB(t *testing.T) {
 }
 
 // 在项目中使用：先引入包，再调函数。
-// zutils "github.com/zhangji2/golibrary/utils"
-// encrypted, err := AesEncryptCBC(str_a_encode, str_a_key)
+// zencode "github.com/zhangji2/golibrary/encode"
+// encrypted, err := zencode.AesEncryptCBC(str_a_encode, str_a_key)
 // fmt.Printf("AesEncryptCBC: %s %v\n", encrypted, err)
 // var str_a_decode = "842977723c16d4d4af39ac3bf34070fe8ca2ff7681f929dc4742fd5284ad3b933b6e3e3a2d29b1985c7e387f94faca43"
-// decrypted, err := AesDecryptCFB(str_a_decode, str_a_key)
+// decrypted, err := zencode.AesDecryptCFB(str_a_decode, str_a_key)
 // fmt.Printf("AesDecryptCBC: %s %v\n", decrypted, err)

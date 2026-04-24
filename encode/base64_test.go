@@ -16,6 +16,6 @@ func TestBase64Decode(t *testing.T) {
 }
 
 // 在项目中使用：先引入包，再调函数。
-// zutils "github.com/zhangji2/golibrary/utils"
-// fmt.Printf("Base64Encode: %v\n", zutils.Base64Encode(str_base64_encode))
-// fmt.Printf("Base64Decode: %v\n", zutils.Base64Decode(str_base64_decode))
+// zencode "github.com/zhangji2/golibrary/encode"
+// fmt.Printf("Base64Encode: %v\n", zencode.Base64Encode(str_base64_encode))
+// fmt.Printf("Base64Decode: %v\n", zencode.Base64Decode(str_base64_decode))

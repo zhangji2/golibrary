@@ -11,5 +11,5 @@ func TestMd5Encode(t *testing.T) {
 }
 
 // 在项目中使用：先引入包，再调函数。
-// zutils "github.com/zhangji2/golibrary/utils"
-// fmt.Printf("Md5Encode: %v\n", zutils.Md5Encode(str_a))
+// zencode "github.com/zhangji2/golibrary/encode"
+// fmt.Printf("Md5Encode: %v\n", zencode.Md5Encode(str_a))
