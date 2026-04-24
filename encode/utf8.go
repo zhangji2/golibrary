@@ -2,7 +2,6 @@ package encode
 
 import (
 	"bytes"
-	"fmt"
 	"io/ioutil"
 
 	"golang.org/x/text/encoding/simplifiedchinese"
@@ -40,8 +39,9 @@ func Utf8ToGbkIgnoreErr(str string) (string, error) {
 	for _, row := range runeChar {
 		new, err := Utf8ToGbk(string(row))
 		if err != nil {
-			fmt.Println("change character encoding error, char:", string(row), "error:", err)
+			// fmt.Println("change character encoding error, char:", string(row), "error:", err)
 			// return "change character encoding error", err
+			buffer.WriteString("?")
 		} else {
 			buffer.WriteString(string(new))
 		}
@@ -58,8 +58,9 @@ func GbkToUtf8IgnoreErr(str string) (string, error) {
 	for _, row := range runeChar {
 		new, err := GbkToUtf8(string(row))
 		if err != nil {
-			fmt.Println("change character encoding error, char:", string(row), "error:", err)
+			// fmt.Println("change character encoding error, char:", string(row), "error:", err)
 			// return "change character encoding error", err
+			buffer.WriteString("?")
 		} else {
 			buffer.WriteString(string(new))
 		}
