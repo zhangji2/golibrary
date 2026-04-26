@@ -6,6 +6,19 @@ import (
 	"testing"
 )
 
+func cacheHandler(conf ConfigCache) error {
+	cacheClient, err := NewCache(conf)
+	if err != nil {
+		log.Println("redis 初始化失败:", err)
+	} else {
+		_ = cacheClient.Set("demo_key", "hello_"+conf.Driver, 300)
+		val, _ := cacheClient.Get("demo_key")
+		fmt.Println("Redis 取值:", val)
+		defer cacheClient.Close()
+	}
+	return nil
+}
+
 func TestRedis(t *testing.T) {
 	redisConf := ConfigCache{
 		Driver: "redis",
@@ -15,15 +28,7 @@ func TestRedis(t *testing.T) {
 			"db":       "0",
 		},
 	}
-	cacheCli, err := NewCache(redisConf)
-	if err != nil {
-		log.Println("redis 初始化失败:", err)
-	} else {
-		_ = cacheCli.Set("demo_key", "hello_redis", 300)
-		val, _ := cacheCli.Get("demo_key")
-		fmt.Println("Redis 取值:", val)
-		defer cacheCli.Close()
-	}
+	cacheHandler(redisConf)
 }
 
 func TestRedisPool(t *testing.T) {
@@ -38,15 +43,7 @@ func TestRedisPool(t *testing.T) {
 			"IdleTimeout": "300",
 		},
 	}
-	cacheCli, err := NewCache(redisPoolConf)
-	if err != nil {
-		log.Println("redis 初始化失败:", err)
-	} else {
-		_ = cacheCli.Set("demo_key", "hello_redis_pool", 300)
-		val, _ := cacheCli.Get("demo_key")
-		fmt.Println("Redis 取值:", val)
-		defer cacheCli.Close()
-	}
+	cacheHandler(redisPoolConf)
 }
 
 func TestMemcache(t *testing.T) {
@@ -56,13 +53,5 @@ func TestMemcache(t *testing.T) {
 			"addr": "127.0.0.1:11211",
 		},
 	}
-	cacheCli, err := NewCache(memConf)
-	if err != nil {
-		log.Println("memcache 初始化失败:", err)
-	} else {
-		_ = cacheCli.Set("demo_key", "hello_memcache", 300)
-		val, _ := cacheCli.Get("demo_key")
-		fmt.Println("Memcache 取值:", val)
-		defer cacheCli.Close()
-	}
+	cacheHandler(memConf)
 }
