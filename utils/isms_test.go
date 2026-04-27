@@ -13,6 +13,12 @@ func TestIsGSM7Encode(t *testing.T) {
 	}
 }
 
+func TestIsmsCalculatePageCount(t *testing.T) {
+	pages, contentLength := IsmsCalculatePageCount("你好，张三，订单号是1234567！")
+	t.Log("pages:", pages)
+	t.Log("contentLength:", contentLength)
+}
+
 // 在项目中使用：先引入包，再调函数。
 // zutils "github.com/zhangji2/golibrary/utils"
 // isGSM7, gsm7ExtendedCount := zutils.IsGSM7Encode("€{]中")

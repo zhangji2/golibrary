@@ -1,5 +1,10 @@
 package utils
 
+import (
+	"math"
+	"unicode/utf8"
+)
+
 // 国际短信工具函数
 
 // IsGSM7Encode 判断编码类型（ASCII/GSM-7 vs Unicode）
@@ -50,4 +55,29 @@ func IsGSM7Encode(content string) (bool, int) {
 		}
 	}
 	return isGSM7, gsm7ExtendedCount
+}
+
+// CalculatePageCount 计算页数（短短信/长短信）
+func IsmsCalculatePageCount(content string) (int, int) {
+	isGSM7, gsm7ExtendedCount := IsGSM7Encode(content)
+	var contentLength int
+	if isGSM7 {
+		contentLength = utf8.RuneCountInString(content) + gsm7ExtendedCount
+	} else {
+		contentLength = utf8.RuneCountInString(content)
+	}
+	var shortLength, longLength int
+	if isGSM7 {
+		// 国际GSM-7编码：160字符/页，长短信153字符/页
+		shortLength = 160
+		longLength = 153
+	} else {
+		// Unicode编码：70字符/页，长短信67字符/页
+		shortLength = 70
+		longLength = 67
+	}
+	if contentLength <= shortLength {
+		return 1, contentLength
+	}
+	return int(math.Ceil(float64(contentLength) / float64(longLength))), contentLength
 }
