@@ -2,13 +2,23 @@ package utils
 
 // 数组工具函数
 
-// InArray 判断数组 a 是否包含字符串 str。
-func InArray(a []string, str string) bool {
+// InArrayStr 判断字符串数组 a 是否包含字符串 str。
+func InArrayStr(a []string, str string) bool {
 	if len(a) == 0 || str == "" {
 		return false
 	}
 	for _, s := range a {
 		if s == str {
+			return true
+		}
+	}
+	return false
+}
+
+// InArrayInt 判断整数数组 a 是否包含整数 target。
+func InArrayInt(target int, arr []int) bool {
+	for _, v := range arr {
+		if v == target {
 			return true
 		}
 	}
