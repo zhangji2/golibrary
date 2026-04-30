@@ -1,0 +1,12 @@
+# app配置
+app:
+  name: test
+  debug: true
+redis:
+  addr: host.docker.internal:6379
+  password: foobared
+  db: 20
+mysql:
+  dsn: root:123@tcp(127.0.0.1:3306)/test
+rabbitmq:
+  uri: amqp://admin:123456@127.0.0.1:5672/default_vhost

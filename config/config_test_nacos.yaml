@@ -1,0 +1,13 @@
+#Nacos配置
+nacos:
+  addr: 127.0.0.1
+  port: 18848
+  user: nacos
+  password: nacos
+  scheme: http
+  context_path: /nacos
+  name_space: f1ec9270-ef54-4991-ad7a-bd02b741f375
+  data_id: push-service
+  data_group: DEFAULT_GROUP
+  runtime_dir:  ./tmp/nacos
+  log_level: info
