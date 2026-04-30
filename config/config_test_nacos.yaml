@@ -9,5 +9,5 @@ nacos:
   name_space: f1ec9270-ef54-4991-ad7a-bd02b741f375
   data_id: push-service
   data_group: DEFAULT_GROUP
-  runtime_dir:  ./tmp/nacos
+  runtime_dir:  ../tmp/nacos
   log_level: info
