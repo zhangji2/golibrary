@@ -7,13 +7,13 @@ import (
 func TestCheckKeywordBlacklist(t *testing.T) {
 	var kl = "apple,banana\napple,cherry,banana"
 	c := "this is an apple"
-	t.Log("content:", CheckKeywordBlacklist(kl, c))
+	t.Log("CheckKeywordBlacklist:", CheckKeywordBlacklist(kl, c))
 }
 
 func TestFindKeywordBlacklist(t *testing.T) {
 	var kl = "apple,banana\napple,cherry,banana"
 	c := "this is an apple"
-	t.Log("content:", FindKeywordBlacklist(kl, c))
+	t.Log("FindKeywordBlacklist:", FindKeywordBlacklist(kl, c))
 }
 
 // 在项目中使用：先引入包，再调函数。
