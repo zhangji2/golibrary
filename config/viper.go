@@ -9,13 +9,13 @@ import (
 )
 
 type ViperConfigStruct struct {
-	Path string
-	File string
+	Path     string
+	FileName string
 }
 
 func NewViper(viperConfig ViperConfigStruct, configInfo interface{}) error {
 	err := fmt.Errorf("config file path is empty")
-	if viperConfig.Path == "" || viperConfig.File == "" {
+	if viperConfig.Path == "" || viperConfig.FileName == "" {
 		fmt.Println("\nViper配置无效:", err, " ", time.Now().Format("2006-01-02 15:04:05"))
 		return err
 	}
@@ -25,7 +25,7 @@ func NewViper(viperConfig ViperConfigStruct, configInfo interface{}) error {
 
 	v := viper.New()
 	v.AddConfigPath(viperConfig.Path)
-	v.SetConfigName(viperConfig.File)
+	v.SetConfigName(viperConfig.FileName)
 
 	err = v.ReadInConfig()
 	if err != nil {

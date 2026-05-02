@@ -12,14 +12,14 @@ import (
 func TestNewViper(t *testing.T) {
 
 	// 初始化Viper配置
-	var ViperConfigInfo ViperConfigStruct
-	ViperConfigInfo.Path = "./"
-	ViperConfigInfo.File = "config_test_app"
+	var ViperConfig ViperConfigStruct
+	ViperConfig.Path = "./"
+	ViperConfig.FileName = "config_test_app"
 
 	// 初始化Nacos配置
 	var appConfig AppConfigStruct
 
-	err := NewViper(ViperConfigInfo, &appConfig)
+	err := NewViper(ViperConfig, &appConfig)
 	if err != nil {
 		fmt.Println("\n初始化Nacos失败:", err, " ", time.Now().Format("2006-01-02 15:04:05"))
 		panic(err)
