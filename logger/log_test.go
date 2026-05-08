@@ -12,9 +12,6 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-// Log .
-var Log *logrus.Logger
-
 func init() {
 	// 初始化log配置
 	var LogConfig LogConfigStruct

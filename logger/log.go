@@ -20,6 +20,8 @@ type LogConfigStruct struct {
 	UdpIp    string
 }
 
+var Log *logrus.Logger
+
 // NewLogger new logger
 func NewLogger(logConfig LogConfigStruct) *logrus.Logger {
 	// if Log != nil {
