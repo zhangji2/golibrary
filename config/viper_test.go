@@ -40,3 +40,6 @@ func TestNewViper(t *testing.T) {
 	assert.Less(t, appConfig.Redis.Db, 26)                // 小于16
 	assert.Contains(t, appConfig.Mysql.Dsn, "3306")       // 字符串包含
 }
+
+// 在项目中使用：先引入包，再调函数。
+// zconfig "github.com/zhangji2/golibrary/config"

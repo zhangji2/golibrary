@@ -93,3 +93,6 @@ func TestSQLite(t *testing.T) {
 	}
 	dbHandler(sqliteConf)
 }
+
+// 在项目中使用：先引入包，再调函数。
+// zdb "github.com/zhangji2/golibrary/db"

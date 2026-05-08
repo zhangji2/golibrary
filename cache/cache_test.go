@@ -55,3 +55,6 @@ func TestMemcache(t *testing.T) {
 	}
 	cacheHandler(memConf)
 }
+
+// 在项目中使用：先引入包，再调函数。
+// zcache "github.com/zhangji2/golibrary/cache"

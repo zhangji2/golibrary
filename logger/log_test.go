@@ -101,3 +101,6 @@ func TestUdp(t *testing.T) {
 	}
 	fmt.Println("服务端回复：", string(buf[:n]))
 }
+
+// 在项目中使用：先引入包，再调函数。
+// zlogger "github.com/zhangji2/golibrary/logger"

@@ -16,7 +16,7 @@ func TestConfig(t *testing.T) {
 	// 初始化Viper配置
 	var ViperConfig ViperConfigStruct
 	ViperConfig.Path = "./"
-	ViperConfig.File = "config_test_app"
+	ViperConfig.FileName = "config_test_app"
 
 	// 初始化Nacos配置
 	var appConfig AppConfigStruct
@@ -33,7 +33,7 @@ func TestConfig(t *testing.T) {
 	// 初始化配置
 	var nacosConfig NacosConfigStruct
 
-	ViperConfig.File = "config_test_nacos"
+	ViperConfig.FileName = "config_test_nacos"
 
 	err = NewViper(ViperConfig, &nacosConfig)
 	if err != nil {
@@ -82,3 +82,6 @@ func TestConfig(t *testing.T) {
 	assert.Less(t, appConfig.Redis.Db, 26)                // 小于16
 	assert.Contains(t, appConfig.Mysql.Dsn, "3306")       // 字符串包含
 }
+
+// 在项目中使用：先引入包，再调函数。
+// zconfig "github.com/zhangji2/golibrary/config"

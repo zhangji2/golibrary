@@ -76,3 +76,6 @@ func TestRocketMQ(t *testing.T) {
 	}
 	mqHandler(rocketConf)
 }
+
+// 在项目中使用：先引入包，再调函数。
+// zmq "github.com/zhangji2/golibrary/mq"
