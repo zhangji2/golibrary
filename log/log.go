@@ -1,4 +1,4 @@
-package logger
+package log
 
 import (
 	"fmt"
@@ -20,7 +20,7 @@ type LogConfigStruct struct {
 	UdpIp    string
 }
 
-var Log *logrus.Logger
+var LogClient *logrus.Logger
 
 // NewLogger new logger
 func NewLogger(logConfig LogConfigStruct) *logrus.Logger {
