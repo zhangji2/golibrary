@@ -5,6 +5,7 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/gomodule/redigo/redis"
 	redispool "github.com/gomodule/redigo/redis"
 )
 
@@ -74,6 +75,24 @@ func (rp *redisPoolCache) Get(key string) (interface{}, error) {
 		}
 	}
 	return result, err
+}
+
+func (rp *redisPoolCache) Lock(key string, value interface{}, expire int) (bool, error) {
+	cacheConn := rp.client.Get()
+	defer cacheConn.Close()
+	getKey, err := redis.Int64(cacheConn.Do("SETNX", key, 1))
+	if err != nil {
+		return false, err
+	}
+	if getKey > 0 {
+		// 设置过期时间
+		_, err = cacheConn.Do("EXPIRE", key, expire)
+		if err != nil {
+			return false, err
+		}
+		return true, nil
+	}
+	return false, nil
 }
 
 func (rp *redisPoolCache) Del(key string) error {

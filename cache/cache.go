@@ -13,6 +13,7 @@ type Cache interface {
 	Set(key string, value interface{}, expireSeconds int) error
 	Get(key string) (interface{}, error)
 	Del(key string) error
+	Lock(key string, value interface{}, expireSeconds int) (bool, error)
 	Close() error
 }
 

@@ -44,6 +44,22 @@ func (m *memcacheCache) Get(key string) (interface{}, error) {
 	return string(item.Value), nil
 }
 
+func (m *memcacheCache) Lock(key string, value interface{}, expire int) (bool, error) {
+	s, ok := value.(string)
+	if !ok {
+		return false, fmt.Errorf("memcache 仅支持 string 类型值")
+	}
+	err := m.client.Add(&memcache.Item{
+		Key:        key,
+		Value:      []byte(s),
+		Expiration: int32(expire),
+	})
+	if err != nil {
+		return false, nil
+	}
+	return true, nil
+}
+
 func (m *memcacheCache) Del(key string) error {
 	return m.client.Delete(key)
 }

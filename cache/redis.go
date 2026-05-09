@@ -7,6 +7,8 @@ import (
 	"time"
 
 	"github.com/go-redis/redis/v8"
+	"github.com/sirupsen/logrus"
+	"github.com/zhangji2/golibrary/logger"
 )
 
 type redisDriver struct{}
@@ -47,6 +49,15 @@ func (r *redisCache) Set(key string, value interface{}, expire int) error {
 
 func (r *redisCache) Get(key string) (interface{}, error) {
 	return r.client.Get(r.ctx, key).Result()
+}
+
+func (r *redisCache) Lock(key string, value interface{}, expire int) (bool, error) {
+	err := r.client.SetNX(r.ctx, key, value, time.Duration(expire)*time.Second).Err()
+	if err != nil {
+		logger.Log.WithFields(logrus.Fields{"mark": "isLockTask"}).Error(err)
+		return false, err
+	}
+	return true, nil
 }
 
 func (r *redisCache) Del(key string) error {
